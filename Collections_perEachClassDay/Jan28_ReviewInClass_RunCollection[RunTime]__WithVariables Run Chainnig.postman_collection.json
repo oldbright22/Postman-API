@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "791ac99c-6c80-4e50-b84b-c8d34bb4cdc3",
+		"name": "Jan28_ReviewInClass_RunCollection[RunTime]__WithVariables Run Chainnig",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25445567"
+	},
+	"item": [
+		{
+			"name": "JSON Post Request [change request OR incident] Chain RunTime",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"POST_new_\"+pm.globals.get(\"Feature\")+\"_created_201_code_returned.\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//Save my response in test tab - JSON\r",
+							"var response = pm.response.json();\r",
+							"\r",
+							"//update latest sys_id into global variable\r",
+							"pm.globals.set(\"sys_id\",response.result.sys_id);\r",
+							"\r",
+							"pm.test(\r",
+							"response.result.sys_id + \" \" +\r",
+							"response.result.number + \" \" +\r",
+							"response.result.short_description + \" \" +\r",
+							"response.result.description\r",
+							", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"record_created.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"API call :: POST = \" + pm.globals.get(\"sys_id\"));\r",
+							"\r",
+							"console.log(\"API call :: POST = \" +pm.globals.get(\"sys_id\"));\r",
+							"\r",
+							"\r",
+							"//traverse thru response to get a specific field/value\r",
+							"console.log(response.result.sys_id);\r",
+							"console.log(response.result.number);\r",
+							"console.log(response.result.short_description);\r",
+							"console.log(response.result.description);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"short_description\":\"record_created.\",\"description\":\"POST_created_by_bernise_with_postman\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseUrl\n}}/api/now/table/{{Feature}}?sysparm_fields=sys_id,short_description,description",
+					"host": [
+						"{{BaseUrl\n}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"{{Feature}}"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "sys_id,short_description,description"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON Put Request [change request OR incident] Chain RunTime",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"PUT_\"+pm.globals.get(\"Feature\")+\"_successfully_200_code_returned\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//Save my response in test tab - JSON\r",
+							"var response = pm.response.json();\r",
+							"\r",
+							"pm.test(\r",
+							"response.result.sys_id +\" \"+\r",
+							"response.result.short_description +\" \"+\r",
+							"response.result.description\r",
+							", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"record_updated.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"API call :: PUT = \" +pm.globals.get(\"sys_id\"));\r",
+							"\r",
+							"console.log(\"API call :: PUT = \" +pm.globals.get(\"sys_id\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"short_description\":\"record_updated.\",\"description\":\"PUT_updated_by_bernise_with_postman\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseUrl\n}}/api/now/table/{{Feature}}/{{sys_id}}?sysparm_fields=sys_id,short_description,description",
+					"host": [
+						"{{BaseUrl\n}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"{{Feature}}",
+						"{{sys_id}}"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "sys_id,short_description,description"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON Delete Request [change request OR incident] Chain RunTime",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"DELETE_\"+pm.globals.get(\"Feature\")+\"_successfully_204_code_returned\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"API call :: DELETE = \" + pm.globals.get(\"sys_id\"));\r",
+							"\r",
+							"console.log(\"API call :: DELETE = \" + pm.globals.get(\"sys_id\"));\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl\n}}/api/now/table/{{Feature}}/{{sys_id}}",
+					"host": [
+						"{{BaseUrl\n}}"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"{{Feature}}",
+						"{{sys_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{Auth_Pwd}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{Auth_User}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

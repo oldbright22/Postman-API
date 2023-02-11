@@ -1,0 +1,57 @@
+{
+	"id": "7d197ee9-31ac-401a-83eb-cdd10a7bd977",
+	"values": [
+		{
+			"key": "update_sys_id",
+			"value": "ddcc079f87682110b24e99383cbb358d",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "sys_id",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "Auth_User",
+			"value": "admin",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "Auth_Pwd",
+			"value": "q-IhZF$6oWd5",
+			"type": "secret",
+			"enabled": true
+		},
+		{
+			"key": "Feature",
+			"value": "incident",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "jira_id",
+			"value": "10015",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "jira_User",
+			"value": "oldbright22@gmail.com",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "jira_Pwd",
+			"value": "ATATT3xFfGF0gzbhP1yzGstVS63Pr0a_0jK7YV4bjIhpOqF1ucRdXdlKu3sShd91UcJlF2SkEqC4qhmeBqQVz2-2kGjPgJh0-22KkoFvFAzLHZHZ88U2uEKoG9Xd8EmbMZEOaf2HldfHLVHazx-0TshVEFJy5k8lRSDRV1A6LQd-JfneZ-aQWT4=DD3F833E\n",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2023-02-04T03:09:33.776Z",
+	"_postman_exported_using": "Postman/10.8.7"
+}

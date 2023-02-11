@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "f4102063-3224-4273-bcf9-8fde14b69bfa",
+		"name": "kFeb02_ReviewInClass_OATHv2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25445567"
+	},
+	"item": [
+		{
+			"name": "JSON Get Change Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get_All_ChangeRequests_200_Code_Returned\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//Save my response in test tab - JSON\r",
+							"var response = pm.response.json();\r",
+							"\r",
+							"var i = 1;\r",
+							"while (i <= 10)\r",
+							"{\r",
+							"    if ((response.result[i].scope) > 0)\r",
+							"    {\r",
+							"        pm.test(\"Request \" + i + \": \" + response.result[i].sys_id +\" ~ SysId Retrieved\");\r",
+							"    }\r",
+							"    i++;\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev87862.service-now.com/api/now/table/change_request",
+					"protocol": "https",
+					"host": [
+						"dev87862",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"change_request"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "redirect_uri",
+				"value": "https://getpostman.com/oauth2/callback",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "authorization_code",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "useBrowser",
+				"value": false,
+				"type": "boolean"
+			},
+			{
+				"key": "state",
+				"value": "test",
+				"type": "string"
+			},
+			{
+				"key": "scope",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "kR6f6y$oFs",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "4a2f63edadb461109455bc21cc0ff9d0",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://dev87862.service-now.com/oauth_auth.do",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://dev87862.service-now.com/oauth_token.do",
+				"type": "string"
+			},
+			{
+				"key": "tokenName",
+				"value": "Postman_OATH",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

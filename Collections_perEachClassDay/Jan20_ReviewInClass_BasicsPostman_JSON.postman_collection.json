@@ -1,0 +1,542 @@
+{
+	"info": {
+		"_postman_id": "cbd7b216-988c-4d2a-b9ac-29d846863655",
+		"name": "Jan20_ReviewInClass_BasicsPostman_JSON",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25445567"
+	},
+	"item": [
+		{
+			"name": "JSON Get All Incidents",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get_All_Incidents_200_Code_Returned\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev87862.service-now.com/api/now/v2/table/incident",
+					"protocol": "https",
+					"host": [
+						"dev87862",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"v2",
+						"table",
+						"incident"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON Get All Incidents - created by bernise",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get_All_Incidents_200_Code_Returned\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev87862.service-now.com/api/now/v2/table/incident?sysparm_fields=sys_id,short_description,description&description=created_by_bernise_with_postman",
+					"protocol": "https",
+					"host": [
+						"dev87862",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"v2",
+						"table",
+						"incident"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "sys_id,short_description,description"
+						},
+						{
+							"key": "description",
+							"value": "created_by_bernise_with_postman"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON Get All Incidents - filtered by sys_Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev87862.service-now.com/api/now/v2/table/incident?sys_id=a0cda6db87e42110b24e99383cbb3514",
+					"protocol": "https",
+					"host": [
+						"dev87862",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"v2",
+						"table",
+						"incident"
+					],
+					"query": [
+						{
+							"key": "sys_id",
+							"value": "a0cda6db87e42110b24e99383cbb3514"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON Get All Incidents - by queryparams",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev87862.service-now.com/api/now/v2/table/incident?sysparm_fields=sys_id,number,short_description&sysparm_limit=10&sys_id=a0cda6db87e42110b24e99383cbb3514",
+					"protocol": "https",
+					"host": [
+						"dev87862",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"v2",
+						"table",
+						"incident"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "sys_id,number,short_description"
+						},
+						{
+							"key": "sysparm_limit",
+							"value": "10"
+						},
+						{
+							"key": "sys_id",
+							"value": "a0cda6db87e42110b24e99383cbb3514"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON Get ChangeRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get_ChangeRequest_200_Code_Returned\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev87862.service-now.com/api/now/table/change_request",
+					"protocol": "https",
+					"host": [
+						"dev87862",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"change_request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON Get ChangeRequest -  by queryparams",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get_ChangeRequest_200_Code_Returned\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev87862.service-now.com/api/now/table/change_request?sysparm_fields=number&sysparm_limit=2",
+					"protocol": "https",
+					"host": [
+						"dev87862",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"change_request"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "number"
+						},
+						{
+							"key": "sysparm_limit",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON Post New Incident - used by get | put PUT01",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"POST_new_incident_created_201_code_returned\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"POST_response_string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"incident_created.\");\r",
+							"});\r",
+							"\r",
+							"//Save my response in test tab\r",
+							"var response = pm.response.json();\r",
+							"\r",
+							"//update latest sys_id into my global variable \r",
+							"//so PUT call can be executed sucesssfully\r",
+							"pm.globals.set(\"update_sys_id\", response.result.sys_id);\r",
+							"\r",
+							"//traverse thru response to get a specific field/value\r",
+							"console.log(response.result.sys_id);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"short_description\":\"incident_created.\",\"description\":\"created_by_bernise_with_postman\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev87862.service-now.com/api/now/table/incident?sysparm_fields=sys_id,short_description,description",
+					"protocol": "https",
+					"host": [
+						"dev87862",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "sys_id,short_description,description"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON Post New Incident - used by deletion DEL01",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"POST_new_incident_created_201_code_returned\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//Save my response in test tab\r",
+							"var response = pm.response.json();\r",
+							"\r",
+							"//pm.collectionVariables.set(\"variable_key\", \"variable_value\");\r",
+							"//update latest sys_id into environment variable\r",
+							"//so DEL call can be used\r",
+							"pm.environment.set(\"delete_sys_id\",response.result.sys_id);\r",
+							"\r",
+							"//traverse thru response to get a specific field/value\r",
+							"console.log(response.result.sys_id);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"short_description\":\"incident_created_for_delete.\",\"description\":\"toDelete_by_bernise_with_postman\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev87862.service-now.com/api/now/table/incident?sysparm_fields=sys_id,short_description,description",
+					"protocol": "https",
+					"host": [
+						"dev87862",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "sys_id,short_description,description"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON Put Update Incident - with SDesc, Desc - PUT01",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"console.log(\"API call :: PUT = \" +pm.globals.get(\"update_sys_id\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"short_description\":\"updated_via_PUT\",\"description\":\"updated_by_bernise_via_postman\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev87862.service-now.com/api/now/table/incident/{{update_sys_id}}?sysparm_fields=sys_id,number,short_description,description&sysparm_limit=4",
+					"protocol": "https",
+					"host": [
+						"dev87862",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						"{{update_sys_id}}"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "sys_id,number,short_description,description"
+						},
+						{
+							"key": "sysparm_limit",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON Delete  Incident Request - DEL01",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"//delete current delete_sys_id\r",
+							"console.log(\"API call :: DELETE = \" +pm.environment.get(\"delete_sys_id\"));\r",
+							"\r",
+							"pm.test(\"DELETE_incident_successfully_204_code_returned\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://dev87862.service-now.com/api/now/table/incident/{{delete_sys_id}}",
+					"protocol": "https",
+					"host": [
+						"dev87862",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident",
+						"{{delete_sys_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{Auth_Pwd}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{Auth_User}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "delete_sys_id",
+			"value": ""
+		}
+	]
+}

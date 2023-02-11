@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "76f99ae0-b661-45d8-9860-5425c455b5f0",
+		"name": "Jan29_zAssignmentHome_JIRA_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "25445567"
+	},
+	"item": [
+		{
+			"name": "JSON Post New Issue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"POST_new_JIRA_ISSUE_created_201_code_returned.\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//Save my response in test tab - JSON\r",
+							"var response = pm.response.json();\r",
+							"\r",
+							"//update latest sys_id into global variable\r",
+							"pm.globals.set(\"jira_id\",response.id);\r",
+							"\r",
+							"pm.test(\r",
+							"response.id + \" \" +\r",
+							"response.key\r",
+							", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"issue\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"API call :: JIRA POST = \" + pm.globals.get(\"jira_id\"));\r",
+							"\r",
+							"console.log(\"API call :: JIRA POST = \" +pm.globals.get(\"jira_id\"));\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"project\": {\r\n            \"key\": \"LDRGHTSCRM\"\r\n        },\r\n        \"summary\": \"create issue in SCRUM project - by bernise via Postman\",\r\n        \"description\": \"POST issue created via postman\",\r\n        \"issuetype\": {\r\n            \"name\": \"Bug\"\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jiraoldright22.atlassian.net/rest/api/2/issue/?sysparm_fields=id,key,self,summary,description",
+					"protocol": "https",
+					"host": [
+						"jiraoldright22",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						""
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "id,key,self,summary,description"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"PUT_JIRA_ISSUE_successfully_204_code_returned\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"//Save my response in test tab - JSON\r",
+							"//var response = pm.response.json();\r",
+							"\r",
+							"//pm.test(\r",
+							"//response.id\r",
+							"//, function () {\r",
+							"//    pm.expect(pm.response.text()).to.include(\"update\");\r",
+							"//});\r",
+							"\r",
+							"pm.test(\"API call :: JIRA PUT = \" +pm.globals.get(\"jira_id\"));\r",
+							"\r",
+							"console.log(\"API call :: JIRA PUT = \" +pm.globals.get(\"jira_id\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"description\": \"JIRA Bug update by bernise via Postman\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jiraoldright22.atlassian.net/rest/api/2/issue/{{jira_id}}?sysparm_fields=id,key,self,summary,description",
+					"protocol": "https",
+					"host": [
+						"jiraoldright22",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{jira_id}}"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "id,key,self,summary,description"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get_All_ChangeRequests_200_Code_Returned\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//Save my response in test tab - JSON\r",
+							"var response = pm.response.json();\r",
+							"\r",
+							"pm.test(\r",
+							"response.id,\r",
+							"response.key\r",
+							");\r",
+							"\r",
+							"pm.test(\"API call :: JIRA GET = \" +pm.globals.get(\"jira_id\"));\r",
+							"\r",
+							"console.log(\"API call :: JIRA GET = \" +pm.globals.get(\"jira_id\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jiraoldright22.atlassian.net/rest/api/2/issue/{{jira_id}}?sysparm_fields=id,key,self,summary,description",
+					"protocol": "https",
+					"host": [
+						"jiraoldright22",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{jira_id}}"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "id,key,self,summary,description"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"DELETE_JIRA_ISSUE__successfully_204_code_returned\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"API call :: JIRA DELETE = \" + pm.globals.get(\"jira_id\"));\r",
+							"\r",
+							"console.log(\"API call :: JIRA DELETE = \" + pm.globals.get(\"jira_id\"));\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "https://jiraoldright22.atlassian.net/rest/api/2/issue/{{jira_id}}"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": {
+			"password": "ATATT3xFfGF0gzbhP1yzGstVS63Pr0a_0jK7YV4bjIhpOqF1ucRdXdlKu3sShd91UcJlF2SkEqC4qhmeBqQVz2-2kGjPgJh0-22KkoFvFAzLHZHZ88U2uEKoG9Xd8EmbMZEOaf2HldfHLVHazx-0TshVEFJy5k8lRSDRV1A6LQd-JfneZ-aQWT4=DD3F833E",
+			"username": "oldbright22@gmail.com"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

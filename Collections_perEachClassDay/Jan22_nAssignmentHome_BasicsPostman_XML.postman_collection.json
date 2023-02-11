@@ -1,0 +1,436 @@
+{
+	"info": {
+		"_postman_id": "9c2b3daa-da0e-4afd-b9ee-a8fd451319f9",
+		"name": "Jan22_nAssignmentHome_BasicsPostman_XML",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25445567"
+	},
+	"item": [
+		{
+			"name": "XML Get ChangeRequest - List 10 retrieved Sys_Ids",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get_All_ChangeRequests_200_Code_Returned\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//Save my response in test tab - XML\r",
+							"var xmlTree = xml2Json(responseBody);\r",
+							"\r",
+							"var i = 1;\r",
+							"while (i <= 10)\r",
+							"{\r",
+							"    if ((xmlTree.response.result[i].scope) > 0)\r",
+							"    {\r",
+							"        pm.test(\"Request \" + i + \": \" + xmlTree.response.result[i].sys_id +\" ~ SysId Retrieved\");\r",
+							"    }\r",
+							"    i++;\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://dev87862.service-now.com/api/now/table/change_request?description=created_by_bernise_with_postman_XML",
+					"protocol": "https",
+					"host": [
+						"dev87862",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"change_request"
+					],
+					"query": [
+						{
+							"key": "description",
+							"value": "created_by_bernise_with_postman_XML"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "XML Post ChangeRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"POST_new_changeReq_created_201_code_returned.\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//Save my response in test tab - JSON\r",
+							"//var response = pm.response.json();\r",
+							"\r",
+							"//Save my response in test tab - XML\r",
+							"var xmlTree = xml2Json(responseBody);\r",
+							"\r",
+							"//pm.collectionVariables.set(\"variable_key\", \"variable_value\");\r",
+							"\r",
+							"//update latest sys_id into environment variable\r",
+							"pm.environment.set(\"chg_req_id_xml\",xmlTree.response.result.sys_id);\r",
+							"\r",
+							"pm.test(xmlTree.response.result.sys_id +\" \"+\r",
+							"xmlTree.response.result.number +\" \"+\r",
+							"xmlTree.response.result.state +\" \"+\r",
+							"xmlTree.response.result.phase +\" \"+\r",
+							"xmlTree.response.result.short_description +\" \"+\r",
+							"xmlTree.response.result.description\r",
+							", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"changeReq_created.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"API call :: POST = \" +pm.environment.get(\"chg_req_id_xml\"));\r",
+							"\r",
+							"console.log(\"API call :: POST = \" +pm.environment.get(\"chg_req_id_xml\"));\r",
+							"\r",
+							"//traverse thru response to get a specific field/value\r",
+							"console.log(xmlTree.response.result.sys_id);\r",
+							"console.log(xmlTree.response.result.number);\r",
+							"console.log(xmlTree.response.result.number);\r",
+							"console.log(xmlTree.response.result.state);\r",
+							"console.log(xmlTree.response.result.phase);\r",
+							"console.log(xmlTree.response.result.short_description);\r",
+							"console.log(xmlTree.response.result.description);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<request><entry>\r\n<phase>changeReq_created.</phase>\r\n<short_description>changeReq_created.</short_description>\r\n<description>created_by_bernise_with_postman_XML</description>\r\n</entry></request>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev87862.service-now.com/api/now/table/change_request?sysparm_fields=sys_id,short_description,description,number,state,phase",
+					"protocol": "https",
+					"host": [
+						"dev87862",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"change_request"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "sys_id,short_description,description,number,state,phase"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "XML Put ChangeRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"PUT_changeRequest_successfully_200_code_returned\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//Save my response in test tab - XML\r",
+							"var xmlTree = xml2Json(responseBody);\r",
+							"\r",
+							"pm.test(\r",
+							"xmlTree.response.result.sys_id +\" \"+\r",
+							"xmlTree.response.result.short_description +\" \"+\r",
+							"xmlTree.response.result.description\r",
+							", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"XML_updated_via_PUT.\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"API call :: PUT = \" +pm.environment.get(\"chg_req_id_xml\"));\r",
+							"\r",
+							"console.log(\"API call :: PUT = \" +pm.environment.get(\"chg_req_id_xml\"));\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<request><entry>\r\n<short_description>XML_updated_via_PUT.</short_description>\r\n<description>XML_updated_by_bernise_via_postman</description>\r\n</entry></request>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev87862.service-now.com/api/now/table/change_request/{{chg_req_id_xml}}?sysparm_fields=sys_id,short_description, description",
+					"protocol": "https",
+					"host": [
+						"dev87862",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"change_request",
+						"{{chg_req_id_xml}}"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "sys_id,short_description, description"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "XML Patch ChangeRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"PATCH_changeRequest_successfully_200_code_returned\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//Save my response in test tab - XML\r",
+							"var xmlTree = xml2Json(responseBody);\r",
+							"\r",
+							"pm.test(xmlTree.response.result.sys_id);\r",
+							"pm.test(xmlTree.response.result.short_description);\r",
+							"pm.test(xmlTree.response.result.description);\r",
+							"\r",
+							"pm.test(\"API call :: PATCH = \" +pm.environment.get(\"chg_req_id_xml\"));\r",
+							"\r",
+							"console.log(\"API call :: PATCH = \" +pm.environment.get(\"chg_req_id_xml\"));\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<request><entry>\r\n<short_description>PATCH_updated_desc</short_description>\r\n</entry></request>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev87862.service-now.com/api/now/table/change_request/{{chg_req_id_xml}}?sysparm_fields=sys_id,short_description,description",
+					"protocol": "https",
+					"host": [
+						"dev87862",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"change_request",
+						"{{chg_req_id_xml}}"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "sys_id,short_description,description"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "XML Delete ChangeRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"DELETE_changeRequest_successfully_204_code_returned\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"API call :: DELETE = \" +pm.environment.get(\"chg_req_id_xml\"));\r",
+							"\r",
+							"console.log(\"API call :: DELETE = \" +pm.environment.get(\"chg_req_id_xml\"));\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://dev87862.service-now.com/api/now/table/change_request/{{chg_req_id_xml}}",
+					"protocol": "https",
+					"host": [
+						"dev87862",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"change_request",
+						"{{chg_req_id_xml}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{Auth_Pwd}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{Auth_User}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
